@@ -4,16 +4,15 @@
  * and open the template in the editor.
  */
 const http = require('http');
+var dt = require('./myfirstmodule');
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-type', 'text/plain');
-    res.end('Hello World\n');
-});
-
-server.listen(port, hostname, () => {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write("The date and time are currently: " + dt.myDateTime());
+    res.end();
+}).listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
